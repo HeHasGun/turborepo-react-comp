@@ -36,4 +36,4 @@ jobs:
       - name: Send a Slack notification if a publish happens
         if: steps.changesets.outputs.published == 'true'
         # You can do something when a publish happens.
-        run: my-slack-bot send-notification --message "A new version of ${https://github.com/HeHasGun/turborepo-react-comp} was published!"
+        run: my-slack-bot send-notification --message "A new version of ${github.repository} was published!"

@@ -15,10 +15,16 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js 20.x and install pnpm
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '14'
+          # Optionally specify the version of pnpm to install
+          # check https://github.com/pnpm/self-installer
+          # for available versions
+          registry-url: 'https://registry.npmjs.org'
+        run: |
+          npm install -g pnpm@latest
 
       - name: Install Dependencies
         run: pnpm install

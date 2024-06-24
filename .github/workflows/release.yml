@@ -38,6 +38,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Deploy to GitHub Pages
+        run: |
+          git checkout gh-pages
+          git rm -rf .
+          git checkout main -- storybook-static
+          mv storybook-static/* .
+          git add .
+          git -c user.name='GitHub Actions' -c user.email='actions@github.com' commit -m "Deploy Storybook to GitHub Pages"
+          git push origin gh-pages
+
       - name: Send a Slack notification if a publish happens
         if: steps.changesets.outputs.published == 'true'
         run: my-slack-bot send-notification --message "A new version of ${{ github.repository }} was published!"

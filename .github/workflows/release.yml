@@ -18,14 +18,12 @@ jobs:
       - name: Setup Node.js and Install pnpm
         uses: actions/setup-node@v2
         with:
-          node-version: '21'
+          node-version: '21.x'
 
-      - name: Install my-slack-bot
-        run: npm install -g my-slack-bot
-
-
-      - name: Install pnpm
-        run: npm install -g pnpm@latest
+      - users: pnpm/action-setup@v2
+        with:
+          version: 7
+          run_install: false
 
       - name: Install Dependencies
         run: pnpm install

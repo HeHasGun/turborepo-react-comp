@@ -46,12 +46,6 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          if git show-ref --verify --quiet refs/heads/gh-pages; then
-            git checkout gh-pages
-          else
-            git checkout -b gh-pages
-          fi
-          git rm -rf .
           git checkout main -- ./apps/docs/storybook-static
           mv ./apps/docs/storybook-static/* .
           git add .

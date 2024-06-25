@@ -42,7 +42,7 @@ jobs:
         run: pnpm build --filter=@antdddddddddd/docs^...
 
       - name: Copy Storybook to temp directory
-        run: cp -r ./ ../storybook-static-temp
+        run: cp -r ./docs/storybook-static ../storybook-static-temp
 
       - name: Switch to gh-pages branch
         run: |

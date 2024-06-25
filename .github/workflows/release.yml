@@ -57,6 +57,9 @@ jobs:
       - name: Copy Storybook from temp directory
         run: cp -r ../storybook-static-temp/* .
 
+      - name: List files in current directory
+        run: ls -al
+
       - name: Commit and Push changes
         run: |
           git add .

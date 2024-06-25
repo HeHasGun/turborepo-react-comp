@@ -12,12 +12,13 @@ const config = {
   ],
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
-    options: {},
+    options: {}
   },
 
   core: {},
 
   async viteFinal(config, { configType }) {
+    console.log(config)
     // customize the Vite config here
     return {
       ...config,
@@ -30,12 +31,15 @@ const config = {
           },
         ],
       }
+
     };
   },
 
   docs: {
     autodocs: true,
   },
+
+
 };
 
 export default config;

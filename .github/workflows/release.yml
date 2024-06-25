@@ -67,6 +67,7 @@ jobs:
           git push origin gh-pages --force
 
 
+
       - name: Send a Slack notification if a publish happens
         if: steps.changesets.outputs.published == 'true'
         run: my-slack-bot send-notification --message "A new version of ${{ github.repository }} was published!"

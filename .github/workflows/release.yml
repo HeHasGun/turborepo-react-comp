@@ -41,16 +41,28 @@ jobs:
       - name: Build Storybook
         run: pnpm build --filter=@antdddddddddd/docs^...
 
-      - name: List directory contents
-        run: ls -al ./apps/docs
+      - name: Copy Storybook to temp directory
+        run: cp -r ./apps/docs/storybook-static ../storybook-static-temp
 
-      - name: Deploy to GitHub Pages
+      - name: Switch to gh-pages branch
         run: |
-          git checkout main -- ./apps/docs/storybook-static
-          mv ./apps/docs/storybook-static/* .
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git fetch origin
+          git checkout -b gh-pages || git checkout gh-pages
+
+      - name: Clean gh-pages branch
+        run: rm -rf *
+
+      - name: Copy Storybook from temp directory
+        run: cp -r ../storybook-static-temp/* .
+
+      - name: Commit and Push changes
+        run: |
           git add .
           git commit -m 'Deploy Storybook to GitHub Pages'
           git push origin gh-pages --force
+
 
       - name: Send a Slack notification if a publish happens
         if: steps.changesets.outputs.published == 'true'

@@ -29,7 +29,7 @@ const config = {
             replacement: resolve(__dirname, "../../../packages/ui/"),
           },
         ],
-      },
+      }
     };
   },
 
